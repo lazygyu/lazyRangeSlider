@@ -1,49 +1,138 @@
 <!doctype html>
 <html>
-  <head>
-    <style>
+	<head>
+		<style>
 div.ls-container {
-  width:500px;
-  height:20px;
-  border-bottom:solid 1px #aaa;
+	width:500px;
+	height:20px;
+	border-top:solid 1px #333;
 }
 div.ls-thumb {
-  width:1rem;
-  height:100%;
-  top:0;
-  cursor:pointer;
-  opacity:0.5;
-  margin-left:-0.5rem;
-    color:blue;
+	width:1rem;
+	height:100%;
+	top:0;
+	cursor:pointer;
+	margin-left:-0.5rem;
+	color:#999;
 }
-div.ls-thumb:nth-child(odd){
-  color:red;
+div.ls-thumb.last{
+	color:white;
+}
+div.ls-thumb.first{
+	color:#333;
 }
 div.ls-thumb:after {
-  content:"▼";
+	content:"▲";
 }
-div.ls-thumb:hover {
-  opacity:1; 
+div.ls-thumb:hover:after {
+	content:"△";
 }
-    </style>
-  </head>
-  <body>
-    <div id="slider" data-min="0" data-max="255" data-sliders="3" data-name="level"></div>
-    <div id="log"></div>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="./lazygyu.slider.js"></script>
-    <script>
-      /*
-      var slider = LazySlider.parse("#slider");
-      slider.on("change", function(values){
-        document.querySelector("#log").innerHTML = values.join(",");
-      });
-      */
-      $(function(){
-        $("#slider").lazySlider().on("change", function(e, values){
-        document.querySelector("#log").innerHTML = values.join(",");
-        });
-      });
-    </script>
-  </body>
+div.ls-container.sliding {
+	border-color:red;
+}
+div.ls-container.sliding div.ls-thumb{
+	color:red;
+}
+div.ls-range {
+	height:100%;
+	background:#eee;
+}
+div.ls-range.first, div.ls-range.last{
+	background:transparent;
+}
+div.cont {
+	background:#ccc;
+	padding:2rem;
+}
+
+div.theme {
+}
+
+div.theme div.ls-container {
+	width:80vw;
+	height:2rem;
+	padding-left:2rem;
+	border:solid 1px black;
+	border-radius:1rem;
+	overflow:hidden;
+}
+div.theme div.ls-thumb {
+	width:2rem;
+	height:2rem;
+	border:solid 1px #369;
+	border-radius:1rem;
+	top:0;
+	margin-left:-1rem;
+	background:#69c;
+}
+div.theme div.ls-thumb:after {
+	content:'';
+}
+div.theme div.ls-range.first {
+	background:red;
+}
+div.theme div.ls-range.last {
+	background:purple;
+}
+div.theme div.ls-range.no2{ background:orange; }
+div.theme div.ls-range.no3{ background:yellow; }
+div.theme div.ls-range.no4{ background:green; }
+div.theme div.ls-range.no5{ background:blue; }
+		</style>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="./lazygyu.slider.js"></script>
+	</head>
+	<body>
+		<h1>Examples</h1>
+		<h2>with jQuery</h2>
+		<div class="cont">
+			<div id="sliderJq" data-min="0" data-max="255" data-sliders="3" data-name="level"></div>
+			<div id="log1"></div>
+		</div>
+		<script>
+			$(function(){
+				var logger = $("#log1");
+				$("#sliderJq").lazySlider().on("change", function(e, values){
+					logger.text(values.join(', '));
+				});
+			});
+		</script>
+		<h2>without jQuery</h2>
+		<div class="cont">
+			<div id="sliderVn" data-min="0" data-max="255" data-sliders="3" data-name="level"></div>
+			<div id="log2"></div>
+		</div>
+		<script>
+			(function(){
+				var slider = LazySlider.parse("#sliderVn");
+				var logger = document.querySelector("#log2");
+				slider.on("change", function(values){
+					logger.innerHTML = values.join(",");
+				});
+			})();
+		</script>
+		<h2>multiple knobs</h2>
+		<div class="cont">
+			<div id="sliderMp" data-min="0" data-max="1000" data-sliders="8" data-name="level"></div>
+			<div id="log3"></div>
+		</div>
+		<script>
+			(function(){
+				var slider = LazySlider.parse("#sliderMp");
+				var logger = document.querySelector("#log3");
+				slider.on("change", function(values){
+					logger.innerHTML = values.join(",");
+				});
+			})();
+		</script>
+		<h2>Styling and default values</h2>
+		<div class="cont theme">
+			<div id="sliderTheme" data-min="0" data-max="60" data-sliders="5" data-name="level" data-values="10,20,30,40,50"></div>
+		</div>
+		<script>
+			(function(){
+				var slider = LazySlider.parse('#sliderTheme');
+			})();
+		</script>
+	</body>
 </html>

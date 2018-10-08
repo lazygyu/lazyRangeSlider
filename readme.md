@@ -103,9 +103,11 @@ Occurs when a value changed. The argument of callback is an array of values.
 
 ## Styling
 
+```
 +------------- div.ls-container ----------+
 |====O===============O=============O======|
 +-----------------------------------------+
+```
 
 O : div.ls-thumb
 
