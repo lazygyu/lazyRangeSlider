@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+div.ls-container {
+  width:500px;
+  height:20px;
+  border-bottom:solid 1px #aaa;
+}
+div.ls-thumb {
+  width:1rem;
+  height:100%;
+  top:0;
+  cursor:pointer;
+  opacity:0.5;
+  margin-left:-0.5rem;
+    color:blue;
+}
+div.ls-thumb:nth-child(odd){
+  color:red;
+}
+div.ls-thumb:after {
+  content:"▼";
+}
+div.ls-thumb:hover {
+  opacity:1; 
+}
+    </style>
+  </head>
+  <body>
+    <div id="slider" data-min="0" data-max="255" data-sliders="3" data-name="level"></div>
+    <div id="log"></div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="./lazygyu.slider.js"></script>
+    <script>
+      /*
+      var slider = LazySlider.parse("#slider");
+      slider.on("change", function(values){
+        document.querySelector("#log").innerHTML = values.join(",");
+      });
+      */
+      $(function(){
+        $("#slider").lazySlider().on("change", function(e, values){
+        document.querySelector("#log").innerHTML = values.join(",");
+        });
+      });
+    </script>
+  </body>
+</html>
