@@ -1,3 +1,4 @@
+(function(){
 function cel(tagName, attrs, classes, text){
 	var t = document.createElement(tagName);
 	if( attrs ){
@@ -199,6 +200,10 @@ LazySlider.parse = function(el){
 	});
 }
 
+if(window){
+	window.LazySlider = LazySlider;
+}
+
 if( jQuery ){
 	(function(){
 		var sliderList = [];
@@ -226,3 +231,4 @@ if( jQuery ){
 		}
 	})();
 }
+})();
