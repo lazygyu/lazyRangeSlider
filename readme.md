@@ -3,6 +3,10 @@ Lazy Range Slider
 
 This is a simple slider control that supports multiple knobs. You can use this for variable number of knobs.
 
+## Demo
+
+http://htmlpreview.github.io/?https://github.com/lazygyu/lazyRangeSlider/blob/master/index.html
+
 ## Usage
 
 ### without jQuery
