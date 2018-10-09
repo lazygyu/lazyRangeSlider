@@ -204,7 +204,7 @@ if(window){
 	window.LazySlider = LazySlider;
 }
 
-if( jQuery ){
+if( window.jQuery ){
 	(function(){
 		var sliderList = [];
 		jQuery.fn.lazySlider = function(params){
