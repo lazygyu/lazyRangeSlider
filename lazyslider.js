@@ -182,10 +182,10 @@ LazySlider.prototype = {
 			this.emit("change", this.slideValues);
 		}
 	},
-	get(){
+  get:function(){
 		return this.slideValues;
 	},
-  set(values){
+  set:function(values){
     for(var i=0,l=Math.min(values.length, this.sliderCount); i<l; i++){
       this.slideValues[i] = values[i];
     }
