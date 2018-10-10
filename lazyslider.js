@@ -153,6 +153,7 @@ LazySlider.prototype = {
 		this.dragOriginalValue = null;
 		document.removeEventListener("mouseup", this._mouseup, false);
 		document.removeEventListener("mousemove", this._drag, {capture:true});
+    this.emit("changed", this.slideValues.slice());
 	},
 	dragHandler:function(e){
 		e.preventDefault();
@@ -182,8 +183,14 @@ LazySlider.prototype = {
 		}
 	},
 	get(){
-		return this.sliderValues;
-	}
+		return this.slideValues;
+	},
+  set(values){
+    for(var i=0,l=Math.min(values.length, this.sliderCount); i<l; i++){
+      this.slideValues[i] = values[i];
+    }
+    this.render();
+  }
 }
 
 LazySlider.parse = function(el){
@@ -214,7 +221,11 @@ if( window.jQuery ){
 						switch(params){
 							case "values":
 								var sl = $(this).data('slider');
-								return sl.get();
+                if( arguments.length == 2 ){
+                  sl.set(arguments[1]);
+                }else{
+                  return sl.get();
+                }
 								break;
 						}
 					}
