@@ -87,6 +87,10 @@ Add an event listener to an event.
 
 Get values array.
 
+### slider.set(values)
+
+Set slider values. Argument must be an array.
+
 ### $(...).lazySlider()
 
 A wrapper of `LazySlider.parse` for jQuery.
@@ -99,11 +103,21 @@ A wrapper of `slider.on` for jQuery.
 
 A wrapper of `slider.get` for jQuery.
 
+### $(...).lazySlider('values', valuesArray)
+
+A wrapper of `slider.set` for jQuery.
+
 ## Events
 
 ### change
 
 Occurs when a value changed. The argument of callback is an array of values.
+This event will occur coutinuously while user dragging a knob.
+
+### changed
+
+Occurs when a value changed. The argument of callback is an array of values.
+This event will occur once when user release the knob.
 
 ## Styling
 
